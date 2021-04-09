@@ -1,10 +1,10 @@
-package com.course.rabbiqmqproducer;
+package com.course.rabbitmqproducer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RabbiqmqProducerApplicationTests {
+class RabbitmqProducerApplicationTests {
 
 	@Test
 	void contextLoads() {
