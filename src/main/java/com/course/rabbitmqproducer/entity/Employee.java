@@ -2,10 +2,16 @@ package com.course.rabbitmqproducer.entity;
 
 import java.time.LocalDate;
 
+import com.course.rabbitmqproducer.json.CustomLocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class Employee {
 
 	private String employeeId;
 	private String name;
+	@JsonProperty("birth_date")
+	@JsonSerialize(using = CustomLocalDateSerializer.class)
 	private LocalDate birthDate;
 
 	public Employee(String employeeId, String name, LocalDate birthDate) {
