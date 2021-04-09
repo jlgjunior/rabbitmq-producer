@@ -18,7 +18,6 @@ public class FixedRateProducer {
 	
 	@Scheduled(fixedRate = 500)
 	public void sendMessage(){
-		logger.info("index is " + index++);
 		rabbitTemplate.convertAndSend("course.fixedrate", "Fixed Rate: " + index);
 	}
 }
