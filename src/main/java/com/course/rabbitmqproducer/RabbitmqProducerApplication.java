@@ -10,14 +10,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.course.rabbitmqproducer.entity.Employee;
-import com.course.rabbitmqproducer.producer.EmployeeJsonProducer;
+import com.course.rabbitmqproducer.producer.HumanResourceProducer;
 
 @SpringBootApplication
 @EnableScheduling
 public class RabbitmqProducerApplication implements CommandLineRunner{
 
 	@Autowired
-	private EmployeeJsonProducer employeeProducer;
+	private HumanResourceProducer humanResourceProducer;
 	
 	
 	public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		IntStream.range(1, 6).
-			forEach(i -> employeeProducer.sendMessage(new Employee("emp"+i, "Employee "+i, LocalDate.now())));
+			forEach(i -> humanResourceProducer.sendMessage(new Employee("emp"+i, "Employee "+i, LocalDate.now())));
 		
 	}
 
