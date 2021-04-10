@@ -9,16 +9,21 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-//@Service
-public class PictureProducer {
+@Service
+public class PictureTopicProducer {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 	private ObjectMapper objectMapper = new ObjectMapper();
 	
 	public void sendMessage(Picture picture) throws JsonProcessingException {
+			
+			StringBuilder routingKey = new StringBuilder();
+			routingKey.append(picture.getSource() + ".");
+			routingKey.append(picture.getSize() > 4000 ? "large." : "small.");
+			routingKey.append(picture.getType());
 			String pictureJson = objectMapper.writeValueAsString(picture);
-			rabbitTemplate.convertAndSend("x.picture", picture.getType(), pictureJson);
+			rabbitTemplate.convertAndSend("x.picture2", routingKey.toString(), pictureJson);
 		
 	}
 	

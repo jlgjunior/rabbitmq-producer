@@ -1,6 +1,5 @@
 package com.course.rabbitmqproducer;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
@@ -11,9 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.course.rabbitmqproducer.entity.Employee;
 import com.course.rabbitmqproducer.entity.Picture;
-import com.course.rabbitmqproducer.producer.PictureProducer;
+import com.course.rabbitmqproducer.producer.PictureTopicProducer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @SpringBootApplication
@@ -21,7 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class RabbitmqProducerApplication implements CommandLineRunner{
 
 	@Autowired
-	private PictureProducer pictureProducer;
+	private PictureTopicProducer pictureProducer;
 	private final List<String> SOURCES = List.of("mobile", "web");
 	private final List<String> TYPES = List.of("jpg", "png", "svg");
 	
