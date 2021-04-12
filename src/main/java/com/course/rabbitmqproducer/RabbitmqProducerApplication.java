@@ -29,7 +29,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner{
 	}
 	@Override
 	public void run(String... args) throws Exception {
-		IntStream.range(0, 1).
+		IntStream.range(0, 10).
 			forEach(i -> {
 				try {
 					pictureProducer.sendMessage(new Picture("Picture "+i, TYPES.get(i%TYPES.size()), SOURCES.get(i%SOURCES.size()), ThreadLocalRandom.current().nextLong(9001, 10001)));
