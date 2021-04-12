@@ -1,7 +1,6 @@
 package com.course.rabbitmqproducer;
 
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.time.LocalDate;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.course.rabbitmqproducer.entity.Picture;
-import com.course.rabbitmqproducer.producer.PictureErrorProducer;
-import com.course.rabbitmqproducer.producer.RetryPictureProducer;
+import com.course.rabbitmqproducer.entity.Employee;
+import com.course.rabbitmqproducer.producer.RetryEmloyeeProducer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @SpringBootApplication
@@ -20,9 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class RabbitmqProducerApplication implements CommandLineRunner{
 
 	@Autowired
-	private RetryPictureProducer pictureProducer;
-	private final List<String> SOURCES = List.of("mobile", "web");
-	private final List<String> TYPES = List.of("jpg", "png", "svg");
+	private RetryEmloyeeProducer employeeProducer;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RabbitmqProducerApplication.class, args);
@@ -32,7 +28,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner{
 		IntStream.range(0, 10).
 			forEach(i -> {
 				try {
-					pictureProducer.sendMessage(new Picture("Picture "+i, TYPES.get(i%TYPES.size()), SOURCES.get(i%SOURCES.size()), ThreadLocalRandom.current().nextLong(9001, 10001)));
+					employeeProducer.sendMessage(new Employee("emp" + i, null, LocalDate.now()));
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
