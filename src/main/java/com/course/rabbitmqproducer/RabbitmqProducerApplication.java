@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.course.rabbitmqproducer.entity.Picture;
 import com.course.rabbitmqproducer.producer.PictureErrorProducer;
+import com.course.rabbitmqproducer.producer.RetryPictureProducer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @SpringBootApplication
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class RabbitmqProducerApplication implements CommandLineRunner{
 
 	@Autowired
-	private PictureErrorProducer pictureProducer;
+	private RetryPictureProducer pictureProducer;
 	private final List<String> SOURCES = List.of("mobile", "web");
 	private final List<String> TYPES = List.of("jpg", "png", "svg");
 	
