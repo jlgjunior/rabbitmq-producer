@@ -43,7 +43,7 @@ public class RabbitmqRestController {
 											@PathVariable(name = "routingKey", required = false) Optional<String> routingKey,
 											@RequestBody String message){
 	
-		if (isValidJson(message)) {
+		if (!isValidJson(message)) {
 			return ResponseEntity.badRequest().body(Boolean.FALSE.toString());
 		}
 		try {
