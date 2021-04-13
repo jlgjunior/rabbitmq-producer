@@ -21,8 +21,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RabbitmqRestController {
 
 	
-	private static final Logger logger = LoggerFactory.getLogger(RabbitmqRestController.class);
-	
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	
 	@Autowired
